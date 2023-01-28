@@ -8,7 +8,11 @@ services:
     ports:
       - 5434:5432
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"
+        ]
       interval: 5s
       timeout: 2s
       retries: 5
@@ -21,17 +25,17 @@ services:
         condition: service_healthy
 
   web:
-      build: . #(6)
-      env_file: .env #(3)
-      command: #(7)
-          bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; python manage.py runserver 0.0.0.0:8000'
-      volumes: #(4)
-          - .:/code
-      stdin_open: true #(9)
-      tty: true #(10)
-      ports: #(3)
-          - 8000:8000
-
-      depends_on: #(8)
-          - db
-          - migrations
+    build: .
+    env_file: .env
+    command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; python manage.py runserver 0.0.0.0:8000'
+    volumes:
+      - .:/code
+    stdin_open: true
+    tty: true
+    ports:
+      - 8000:8000
+    depends_on:
+      db:
+        condition: service_healthy
+      migrations:
+        condition: service_completed_successfully
