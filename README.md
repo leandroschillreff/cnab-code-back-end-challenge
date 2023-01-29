@@ -119,9 +119,9 @@ This is a [Django](http://www.djangoproject.com) project, which consists of uplo
 
         ```shell
         docker-compose up
+        ```
 
-        or
-
+        ```shell
         sudo docker-compose up
         ```
 
@@ -129,9 +129,9 @@ This is a [Django](http://www.djangoproject.com) project, which consists of uplo
 
         ```shell
         docker-compose stop
+        ```
 
-        or
-
+        ```shell
         sudo docker-compose stop
         ```
 
@@ -139,9 +139,9 @@ This is a [Django](http://www.djangoproject.com) project, which consists of uplo
 
         ```shell
         docker-compose start
+        ```
 
-        or
-
+        ```shell
         sudo docker-compose start
         ```
 
@@ -149,9 +149,9 @@ This is a [Django](http://www.djangoproject.com) project, which consists of uplo
 
         ```shell
         docker-compose down
+        ```
 
-        or
-
+        ```shell
         sudo docker-compose down
         ```
 
