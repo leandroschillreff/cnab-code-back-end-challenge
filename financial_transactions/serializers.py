@@ -13,3 +13,9 @@ class FinancialTransactionSerializer(serializers.ModelSerializer):
             return FinancialTransaction.objects.create(**validated_data)
 
 
+class FinancialTransactionStoreSerializer(serializers.ModelSerializer):
+    total_balance = serializers.FloatField()
+
+    class Meta:
+        model = FinancialTransaction
+        fields = ["store_name", "store_owner", "total_balance"]
