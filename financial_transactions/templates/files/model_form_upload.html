@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    <title>CNAB Upload</title>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>
+          Formulário para envio arquivo CNAB
+        </h1>
+      </header>
+      <form method="post" , enctype="multipart/form-data" class="drop-container">
+        {% csrf_token %} {% for entry in form %}
+          <label>Escolha um arquivo em formato .txt</label>
+          {{entry}}
+        {% endfor %}
+        <button type="submit">Submit</button>
+        {% if messages %}
+          <div class="messages">
+              {% for message in messages %}
+              <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+              {% endfor %}
+          </div>
+        {% endif %}
+      </form>
+    </main>
+  </body>
+</html>
